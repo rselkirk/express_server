@@ -1,0 +1,22 @@
+<!-- views/urls_index.ejs -->
+
+<html lang='en'>
+<head>
+  <title>TinyApp</title>
+</head>
+<body>
+<h1>Tiny URL List</h1>
+
+<ul>
+  <% Object.keys(urls).forEach(key => { %>
+    <li>
+        <%= key %>: <%= urls[key] %>
+    </li>
+  <% }); %>
+</ul>
+
+<a href="empty">Make a New Tiny URL</a>
+
+
+</body>
+</html>
