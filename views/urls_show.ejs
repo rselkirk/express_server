@@ -10,7 +10,11 @@
 
 <p><%= shortURL %> : <%= longURL %><p>
 
+<form method="POST" action="/urls/<%= longURL %>delete">
+  <input type="submit" value="Edit">
+</form>
+
 
 
 </body>
-</html>
+</html>`

@@ -11,7 +11,10 @@
 <ul>
   <% Object.keys(urls).forEach(key => { %>
     <li>
-        <%= key %>: <%= urls[key] %>
+        <%= key %>: <%= urls[key] %> 
+        <form method="POST" action="/urls/<%= key %>/delete">
+          <input type="submit" value="Delete">
+        </form>
     </li>
   <% }); %>
 </ul>
