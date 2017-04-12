@@ -14,9 +14,16 @@ function generateRandomString() {
 }
 
 const urlDatabase = {
-  b2xVn2: 'http://www.lighthouselabs.ca',
+  'b2xVn2': 'http://www.lighthouselabs.ca',
   '9sm5xK': 'http://www.google.com',
 };
+
+app.post('/urls/:id', (req, res) => {
+  const newlong = req.body.newURL;
+  const tiny = req.params.id;
+  urlDatabase[req.params.id] = newlong;
+  res.redirect(`/urls/${tiny}`);
+});
 
 app.get('/', (req, res) => {
   res.end('Hello!');
@@ -37,14 +44,13 @@ app.get('/urls/new', (req, res) => {
 app.post('/urls', (req, res) => {
   const tiny = generateRandomString();
   urlDatabase[tiny] = req.body.longURL;
-  console.log(urlDatabase);
   res.redirect(`/urls/${tiny}`);
 });
 
 app.post('/urls/:id/delete', (req, res) => {
   const key = req.params.id;
   delete urlDatabase[key];
-  res.redirect('/urls')
+  res.redirect('/urls');
 });
 
 app.get('/u/:shortURL', (req, res) => {

@@ -6,15 +6,16 @@
 </head>
 <body>
 <%- include('partials/_header.ejs') %>
-<h1>A Single Tiny URL</h1>
+<h1>ShortURL: <%= shortURL %></h1>
 
 <p><%= shortURL %> : <%= longURL %><p>
 
-<form method="POST" action="/urls/<%= longURL %>delete">
-  <input type="submit" value="Edit">
+<form method="POST" action="/urls/<%= shortURL %>">
+  <input id="newURL" type="text" name="newURL" placeholder="http://" style="width: 300px">
+  <input type="submit" value="Update">
 </form>
 
 
 
 </body>
-</html>`
+</html>
