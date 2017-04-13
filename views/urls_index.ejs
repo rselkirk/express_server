@@ -4,10 +4,19 @@
 <head>
   <title>TinyApp</title>
 </head>
+<style>
+
+h1 {color:darkblue; font-family: Arial, Helvetica, sans-serif;}
+ul {font-family: Arial, Helvetica, sans-serif;}
+a {font-family: Arial, Helvetica, sans-serif:}
+
+</style>
+
 <body>
 <%- include('partials/_header.ejs') %>
 <h1>Tiny URL List</h1>
 
+<div class="w3-container">
 <ul>
   <% Object.keys(urls).forEach(key => { %>
     <li>
@@ -19,6 +28,7 @@
     </li>
   <% }); %>
 </ul>
+</div>
 
 <a href="empty">Make a New Tiny URL</a>
 
