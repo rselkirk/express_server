@@ -1,0 +1,18 @@
+<!-- views/user_reg.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body style="font-size:20px; padding:50px;">
+    <h1> Register as a new user: </h1>
+    <form action="/register" method="POST">
+      <label for="email">Email:</label>
+      <input id="email" type="email" name="email" placeholder="enter your email" style="width: 300px">
+      <div>
+      <label for="password">Password:</label>
+      <input id="password" type="text" name="password" placeholder="enter a password" style="width: 300px">
+      <input type="submit" value="Register">
+      </div>
+    </form>
+  </body>
+</html>
