@@ -44,10 +44,9 @@ app.post('/login', (req, res) => {
   for (let user in users) {
     let existingUser = (users[user].email);
     let existingPassword = (users[user].password);
-
-     if (existingUser === loginEmail) {
+    if (existingUser === loginEmail) {
       if (existingPassword === loginPassword) {
-        res.cookie('username', users[user].id);
+        res.cookie('user_Id', users[user].id);
         res.redirect('/');
       } else if (existingPassword !== loginPassword) {
         res.status(403).send('Wrong Password!');
@@ -62,7 +61,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-  res.clearCookie('username');
+  res.clearCookie('user_Id');
   res.redirect('/urls');
 });
 
@@ -83,28 +82,30 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
   const newEmail = req.body.email;
-  if (!req.body.email || !req.body.password) {
+  if (!req.body.email && !req.body.password) {
     res.status(400).send('Please enter an email and password!');
-  } else if (req.body.email) {
+  } else if (req.body.email && !req.body.password) {
+    res.status(400).send('Please enter a password!');
+  } else if (req.body.email && req.body.password) {
     for (let user in users) {
       let existing = (users[user].email);
       if (existing === newEmail) {
-      res.status(400).send('User already registered!');
+        res.status(400).send('User already registered!');
+        return;
+      }
     }
-  }  
-  } else {
-  const id = generateRandomString();
-  const user = req.body.email;
-  const password = req.body.password;
-  const templateVars = { user: user };
-  users[id] = {};
-  users[id]['id'] = id;
-  users[id]['email'] = user;
-  users[id]['password'] = password;
-  res.cookie('user_Id', id);
-  res.redirect('urls/new');
-  console.log(users);
-};
+    const id = generateRandomString();
+    const user = req.body.email;
+    const password = req.body.password;
+    const templateVars = { user: user };
+    users[id] = {};
+    users[id]['id'] = id;
+    users[id]['email'] = user;
+    users[id]['password'] = password;
+    res.cookie('user_Id', id);
+    res.redirect('urls/new');
+    console.log(users); 
+  }
 });
 
 app.get('/urls.json', (req, res) => {
