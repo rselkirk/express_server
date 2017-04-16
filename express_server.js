@@ -13,7 +13,7 @@ app.use(cookieSession({
   name: 'session',
   keys: ['lighthouse'],
 
-// Cookie Options
+// cookie options
   maxAge: 24 * 60 * 60 * 1000,
 }));
 
@@ -47,9 +47,9 @@ function urlsForUser(id) {
 
 // database of tiny URLs
 const urlDatabase = {
-  b2xVn2: { tiny: 'b2xVn2', url: 'http://www.lighthouselabs.ca', userID: 'user1' },
+  'b2xVn2': { tiny: 'b2xVn2', url: 'http://www.lighthouselabs.ca', userID: 'user1' },
   '9sm5xK': { tiny: '9sm5xK', url: 'http://www.google.com', userID: 'user2' },
-  '9sm5xK2': { tiny: '9sm5xK2', url: 'http://www.cbc.ca', userID: 'user2' },
+  'g3ft9m': { tiny: '9sm5xK2', url: 'http://www.cbc.ca', userID: 'user2' },
 };
 
 // database of site users
@@ -57,12 +57,12 @@ const users = {
   user1: {
     id: 'user1',
     email: 'user1@example.com',
-    password: '$2a$10$ppUFtC8saYVqCbYlQ2STg..xv0.5Uy.XQYLUZoGg.eitUVn7pNAI6', // purple (comment for testing)
+    password: '$2a$10$ppUFtC8saYVqCbYlQ2STg..xv0.5Uy.XQYLUZoGg.eitUVn7pNAI6', // purple (for testing)
   },
   user2: {
     id: 'user2',
     email: 'user2@example.com',
-    password: '$2a$10$nYgj0etavqZs42nJ/QYB7eW4ltnklq5fKgaw2JRbCfyUBm/VP/BZO', // dishwasher (comment for testing)
+    password: '$2a$10$nYgj0etavqZs42nJ/QYB7eW4ltnklq5fKgaw2JRbCfyUBm/VP/BZO', // dishwasher (for testing)
   },
 };
 
