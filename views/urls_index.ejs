@@ -4,26 +4,53 @@
 <head>
   <title>TinyApp</title>
 </head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
 <body>
 <% include partials/_header %>
 <h1>Tiny URL List</h1>
 
 <div class="w3-container">
-<ul>
-  <% Object.keys(urls).forEach(key => { %>
-    <li>
-        <%= key %>: <%= urls[key] %>
-        <a href="/urls/<%= key %>">Edit</a>
-        <form method="POST" action="/urls/<%= key %>/delete">
-          <input type="submit" value="Delete">
-        </form>
-    </li>
-  <% }); %>
-</ul>
+<table border: 1px solid black;>
+  <tr>
+    <tr>
+      <th>TinyURL</th>
+      <th>LongURL</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>  
+    <tr>
+    <% for (let urlObj in urls) { %>
+    <td>
+      <%= urls[urlObj].tiny %>
+    </td>
+    <td>
+      <%= urls[urlObj].url %>
+    </td>
+    <td>
+      <a href="/urls/<%= urls[urlObj].tiny %>">Edit</a>
+    </td>
+    <td>
+      <form method="POST" action="/urls/<%= urls[urlObj].tiny %>/delete">
+      <input type="submit" value="Delete">
+      </form>
+    </td> 
+    </tr>   
+  <% }; %>
+</table>
 </div>
 
-<a href="empty">Make a New Tiny URL</a>
-
+<div>
+<a href="/urls/new">Make a New Tiny URL</a>
+</div>
 
 </body>
 </html>
