@@ -71,7 +71,7 @@ Once logged in, redirects to url list */
 app.post('/login', (req, res) => {
   const loginEmail = req.body.email;
   const loginPassword = req.body.password;
-  for (const user in users) {
+  for (let user in users) {
     const existingUser = (users[user].email);
     const existingPassword = (users[user].password);
     if (existingUser === loginEmail) {
@@ -107,7 +107,7 @@ app.post('/logout', (req, res) => {
 
 /* creates a new tiny URL and adds it to the urlDatabase
 then redirects user to their newly create url page */
-app.post('/urls/:id', (req, res) => {
+app.post('/urls/:id', auth, (req, res) => {
   const newlong = req.body.newURL;
   const tiny = req.params.id;
   urlDatabase[req.params.id].url = newlong;
@@ -185,7 +185,7 @@ app.post('/urls', auth, (req, res) => {
 });
 
 // deletes Tiny URL from urlDatabase and redirects user to URL page
-app.post('/urls/:id/delete', (req, res) => {
+app.post('/urls/:id/delete', auth, (req, res) => {
   const key = req.params.id;
   delete urlDatabase[key];
   res.redirect('/urls');
